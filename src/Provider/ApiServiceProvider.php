@@ -61,7 +61,7 @@ class ApiServiceProvider extends ServiceProvider
         $this->registerRateLimiter();
         $this->registerResponseFactory();
         $this->registerExceptionHandler();
-        $this->registerCommands();
+//        $this->registerCommands();
     }
 
     /**
