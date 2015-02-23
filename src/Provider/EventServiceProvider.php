@@ -17,7 +17,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app['events']->listen('router.exception', 'Dingo\Api\Event\ExceptionHandler');
-        $this->app['events']->listen('router.matched', 'Dingo\Api\Event\RevisingHandler');
 
         $this->app['router']->filter('api.auth', 'Dingo\Api\Http\Filter\AuthFilter');
         $this->app['router']->filter('api.throttle', 'Dingo\Api\Http\Filter\RateLimitFilter');
