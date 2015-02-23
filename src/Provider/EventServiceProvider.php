@@ -31,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('Dingo\Api\Event\ExceptionHandler', function ($app) {
-            return new ExceptionHandler($app['api.exception'], $app['config']->get('api::debug'));
+            return new ExceptionHandler($app['api.exception'], $app['config']['dingo.debug']);
         });
 
         $this->app->bind('Dingo\Api\Event\RevisingHandler', function ($app) {

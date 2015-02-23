@@ -23,7 +23,7 @@ class ApiServiceProvider extends ServiceProvider
     {
         $this->setupContainerBindings();
 
-        Response::setFormatters($this->prepareConfigInstances($this->app['config']['api::formats']));
+        Response::setFormatters($this->prepareConfigInstances($this->app['config']['dingo.formats']));
         Response::setTransformer($this->app['api.transformer']);
     }
 
@@ -97,7 +97,7 @@ class ApiServiceProvider extends ServiceProvider
     protected function registerTransformer()
     {
         $this->app->bindShared('api.transformer', function ($app) {
-            $transformer = $this->prepareConfigInstance($app['config']['api::transformer']);
+            $transformer = $this->prepareConfigInstance($app['config']['dingo.transformer']);
 
             return new TransformerFactory($app, $transformer);
         });
@@ -111,7 +111,7 @@ class ApiServiceProvider extends ServiceProvider
     protected function registerAuthenticator()
     {
         $this->app->bindShared('api.auth', function ($app) {
-            $providers = $this->prepareConfigInstances($app['config']['api::auth']);
+            $providers = $this->prepareConfigInstances($app['config']['dingo.auth']);
 
             return new Authenticator($app['router'], $app, $providers);
         });
@@ -125,7 +125,7 @@ class ApiServiceProvider extends ServiceProvider
     protected function registerRateLimiter()
     {
         $this->app->bindShared('api.limiter', function ($app) {
-            $throttles = $this->prepareConfigInstances($app['config']['api::throttling']);
+            $throttles = $this->prepareConfigInstances($app['config']['dingo.throttling']);
 
             $limiter = new RateLimiter($app, $app['cache'], $throttles);
 

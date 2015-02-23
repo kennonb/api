@@ -14,7 +14,13 @@ class PropertiesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('dingo/api', 'api', __DIR__.'/../');
+        $this->publishes( [
+            __DIR__ . '/../config/config.php' => config_path( 'dingo.php' )
+        ] );
+
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/config.php', 'dingo'
+        );
     }
 
     /**
@@ -25,7 +31,7 @@ class PropertiesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bindShared('api.properties', function ($app) {
-            $properties = $app['config']->get('api::config');
+            $properties = $app['config']['dingo'];
 
             return new Properties(
                 $properties['version'],
