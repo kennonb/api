@@ -4,10 +4,10 @@ namespace Dingo\Api\Console;
 
 use Dingo\Api\Routing\Router;
 use Illuminate\Routing\Route;
-use Illuminate\Foundation\Console\RoutesCommand;
+use Illuminate\Foundation\Console\RouteListCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-class ApiRoutesCommand extends RoutesCommand
+class ApiRoutesCommand extends RouteListCommand
 {
     /**
      * The console command name.
