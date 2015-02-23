@@ -22,13 +22,12 @@ class JWTProvider extends AuthorizationProvider
      * Create a new JWT provider instance.
      *
      * @param \Tymon\JWTAuth\JWTAuth $auth
-     *
-     * @return void
      */
     public function __construct(JWTAuth $auth)
     {
         $this->auth = $auth;
     }
+
 
     /**
      * Authenticate request with a JWT.
@@ -37,6 +36,9 @@ class JWTProvider extends AuthorizationProvider
      * @param \Dingo\Api\Routing\Route $route
      *
      * @return mixed
+     *
+     * @throws Exception
+     * @throws UnauthorizedHttpException
      */
     public function authenticate(Request $request, Route $route)
     {
@@ -49,12 +51,16 @@ class JWTProvider extends AuthorizationProvider
         }
     }
 
+
     /**
      * Get the JWT from the request.
      *
      * @param \Illuminate\Http\Request $request
      *
      * @return string
+     *
+     * @throws Exception
+     * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
      */
     protected function getToken(Request $request)
     {
